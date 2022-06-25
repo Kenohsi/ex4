@@ -47,7 +47,7 @@ public abstract class Downloader {
         } catch (IOException e) {
             fileName = "unglültigername" + HTML_EXTENSION; // extract filename}
             throw new NewsAPIException("Either failed to open URL: " + urlString + " or failed to write to Folder. Error message: " + e.getMessage());
-
+enum
 
 
         } finally {
