@@ -13,9 +13,10 @@ public class Menu {
     private static final String EXIT_MESSAGE = "Bye bye!";
     private AppController controller;
 
+
     public void start(){
         String input;
-        controller = new AppController();
+        controller = AppController.getInstance();
 
         do{
             printMenu();
@@ -43,37 +44,21 @@ public class Menu {
     // Method is needed for exercise 4 - ignore for exercise 3 solution
     private void downloadURLs(){
         try {
-
-
-      //    try {
-      //        System.out.println(controller.get());
-      //    } catch (NewsAPIException e) {
-      //        System.out.println(e.getMessage());
-      //    }
-
-
-            //Long start = System.nanoTime();
-
-          //  System.out.println();
-            //saveUrl2File(url);
-
+           // Long start = System.currentTimeMillis();
+            //Long end = System.currentTimeMillis();
             int resultSequential = controller.downloadURLs(new SequentialDownloader());
-
+           // System.out.println(resultSequential + (end-start));
 
             // TODO print time in ms it took to download URLs sequentially
 
-            ///////////Long end = System.nanoTime();
-
-           // System.out.println(resultSequential);
-
-
 
             // TODO implement the process() function in ParallelDownloader class
-
+            //start = System.currentTimeMillis();
+           // end = System.currentTimeMillis();
             int resultParallel = controller.downloadURLs(new ParallelDownloader());
-
+           // System.out.println(resultSequential + (end-start));
             // TODO print time in ms it took to download URLs parallel
-           // long estimatedTime = System.nanoTime() - startTime;
+
         } catch (NewsAPIException e){
             System.out.println(e.getMessage());
         }
