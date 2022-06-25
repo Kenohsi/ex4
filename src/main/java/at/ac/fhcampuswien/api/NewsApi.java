@@ -68,6 +68,7 @@ public class NewsApi {
         private String pageSize;
         private String page;
 
+        //Constructor
         public Builder(){
             this.endpoint = endpoint;
             this.q = q;
