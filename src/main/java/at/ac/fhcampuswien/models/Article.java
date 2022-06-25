@@ -1,4 +1,5 @@
 package at.ac.fhcampuswien.models;
+import java.lang.module.ModuleDescriptor.Builder;
 
 public class Article {
     private String author;
@@ -10,11 +11,15 @@ public class Article {
     private String publishedAt;
     private String content;
 
-    public Article(String author, String title,String url,String urlToImage){
+    public Article(String author, String title, Source source, String description, String url, String urlToImage, String publishedAt, String content) {
         this.author = author;
         this.title = title;
-        this.url=url;
-        this.urlToImage=urlToImage;
+        this.source = source;
+        this.description = description;
+        this.url = url;
+        this.urlToImage = urlToImage;
+        this.publishedAt = publishedAt;
+        this.content = content;
     }
 
 

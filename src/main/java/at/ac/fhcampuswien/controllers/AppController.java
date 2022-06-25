@@ -2,8 +2,7 @@ package at.ac.fhcampuswien.controllers;
 
 import at.ac.fhcampuswien.api.NewsApi;
 import at.ac.fhcampuswien.downloader.Downloader;
-import at.ac.fhcampuswien.enums.Country;
-import at.ac.fhcampuswien.enums.Endpoint;
+import at.ac.fhcampuswien.enums.*;
 import at.ac.fhcampuswien.models.Article;
 import at.ac.fhcampuswien.models.NewsResponse;
 import at.ac.fhcampuswien.models.Source;
@@ -31,7 +30,10 @@ public class AppController {
     // returns number of downloaded article urls
 
     public List<Article> getTopHeadlinesAustria() {
-        NewsApi api = new NewsApi( "politik", Endpoint.EVERYTHING );
+        NewsApi api = new NewsApi.Builder()
+                .endpoint(Endpoint.TOP_HEADLINES)
+                .q("corona")
+                .build();
         articles = new ArrayList<>();
         try {
             NewsResponse response = api.requestData();
@@ -82,7 +84,10 @@ public class AppController {
      * @return filtered list
      */
     public List<Article> getAllNewsBitcoin() {
-        NewsApi api = new NewsApi( "bitcoin", Endpoint.EVERYTHING );
+        NewsApi api = new NewsApi.Builder()
+                .endpoint(Endpoint.EVERYTHING)
+                .q("bitcoin")
+                .build();
         articles = new ArrayList<>();
         try {
             NewsResponse response = api.requestData();

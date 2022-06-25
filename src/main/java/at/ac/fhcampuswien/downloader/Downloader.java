@@ -11,7 +11,7 @@ import java.util.List;
 public abstract class Downloader {
 
     public static final String HTML_EXTENSION = ".html";
-    public static final String DIRECTORY_DOWNLOAD = "C:/Users/kenan/IdeaProjects/prg2-exercise-3-solution/src/main/java/at/ac/fhcampuswien/download/";
+    public static final String DIRECTORY_DOWNLOAD = "C:/Users/Adam/IdeaProjects/ex4/src/main/java/at/ac/fhcampuswien/download/";
 
     public abstract int process(List<String> urls) throws NewsAPIException;
 
