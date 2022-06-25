@@ -2,10 +2,7 @@ package at.ac.fhcampuswien.downloader;
 
 import at.ac.fhcampuswien.controllers.NewsAPIException;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
@@ -14,7 +11,7 @@ import java.util.List;
 public abstract class Downloader {
 
     public static final String HTML_EXTENSION = ".html";
-    public static final String DIRECTORY_DOWNLOAD = "./download/";
+    public static final String DIRECTORY_DOWNLOAD = "C:/Users/kenan/IdeaProjects/prg2-exercise-3-solution/src/main/java/at/ac/fhcampuswien/download/";
 
     public abstract int process(List<String> urls) throws NewsAPIException;
 
@@ -22,14 +19,21 @@ public abstract class Downloader {
         InputStream is = null;
         OutputStream os = null;
         String fileName;
+       // File file = new File( "C:/myfile.txt" );
         try {
+
             URL url4download = new URL(urlString);  // Convert string to URL
             is = url4download.openStream();
-            fileName = urlString.substring(urlString.lastIndexOf('/') + 1); // extract filename
 
-            if (fileName.isEmpty()) {
-                fileName = url4download.getHost() + HTML_EXTENSION; // if no filename could be extracted use the URL host and .html extension
-            }
+                fileName = urlString.substring(urlString.lastIndexOf('/') + 1); // extract filename
+
+                if (fileName.isEmpty()) {
+                    fileName = url4download.getHost() + HTML_EXTENSION; // if no filename could be extracted use the URL host and .html extension
+                }
+
+
+
+
 
             os = new FileOutputStream(DIRECTORY_DOWNLOAD + fileName);   // write to /download/<filename>
 
@@ -41,13 +45,20 @@ public abstract class Downloader {
         } catch (MalformedURLException e){
             throw new NewsAPIException("Cannot convert " + urlString + " to URL. Error message: " + e.getMessage());
         } catch (IOException e) {
+            fileName = "unglültigername" + HTML_EXTENSION; // extract filename}
             throw new NewsAPIException("Either failed to open URL: " + urlString + " or failed to write to Folder. Error message: " + e.getMessage());
+
+
+
         } finally {
             try {
                 if(is != null)
                     is.close();
                 if(os != null)
                     os.close();
+
+
+
             } catch (IOException | NullPointerException e) {
                 e.printStackTrace();
             }

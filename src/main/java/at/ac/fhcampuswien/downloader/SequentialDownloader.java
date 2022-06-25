@@ -14,6 +14,7 @@ public class SequentialDownloader extends Downloader {
         for (String url : urls) {
             try {
                 String fileName = saveUrl2File(url);
+                System.out.println(saveUrl2File(url));
                 if(fileName != null)
                     count++;
             } catch (NewsAPIException e){

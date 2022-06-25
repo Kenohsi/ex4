@@ -1,6 +1,6 @@
 package at.ac.fhcampuswien.models;
 
-public class Article {
+public class URLs {
     private String author;
     private String title;
     private Source source;
@@ -10,13 +10,10 @@ public class Article {
     private String publishedAt;
     private String content;
 
-    public Article(String author, String title,String url,String urlToImage){
-        this.author = author;
-        this.title = title;
-        this.url=url;
-        this.urlToImage=urlToImage;
+    public URLs(String url, String urlToImage){
+        this.url = url;
+        this.urlToImage = urlToImage;
     }
-
 
     public Source getSource() {
         return source;
@@ -53,9 +50,7 @@ public class Article {
     @Override
     public String toString() {
         return
-                "Title: " + getTitle() + "\n" +
-                        "Author: " + getAuthor() + "\n"
-                        //+ "; Source: " + getSource().getName() + "\n"
-                        + "Desc (length): " + getDescription().length() + "\n Desc: " + getDescription() + "\n";
+                "URL: " + getUrl() + "\n" +
+                        "URL to Image: " + getUrlToImage() + "\n";
     }
 }

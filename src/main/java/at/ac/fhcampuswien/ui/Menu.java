@@ -43,17 +43,43 @@ public class Menu {
     // Method is needed for exercise 4 - ignore for exercise 3 solution
     private void downloadURLs(){
         try {
+
+
+      //    try {
+      //        System.out.println(controller.get());
+      //    } catch (NewsAPIException e) {
+      //        System.out.println(e.getMessage());
+      //    }
+
+
+            //Long start = System.nanoTime();
+
+          //  System.out.println();
+            //saveUrl2File(url);
+
             int resultSequential = controller.downloadURLs(new SequentialDownloader());
+
+
             // TODO print time in ms it took to download URLs sequentially
 
+            ///////////Long end = System.nanoTime();
+
+           // System.out.println(resultSequential);
+
+
+
             // TODO implement the process() function in ParallelDownloader class
+
             int resultParallel = controller.downloadURLs(new ParallelDownloader());
 
             // TODO print time in ms it took to download URLs parallel
-
+           // long estimatedTime = System.nanoTime() - startTime;
         } catch (NewsAPIException e){
             System.out.println(e.getMessage());
         }
+    }
+    private void URLs(AppController controller) {
+
     }
 
     private void getProviderWithMostArticles() {
@@ -117,6 +143,7 @@ public class Menu {
     private void getAllNewsBitcoin(AppController controller) {
         System.out.println(controller.getAllNewsBitcoin());
     }
+
 
     public static void printExitMessage(){
         System.out.println(EXIT_MESSAGE);
