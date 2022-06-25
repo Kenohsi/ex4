@@ -12,9 +12,15 @@ import java.util.stream.Collectors;
 
 public class AppController {
     private List<Article> articles;
+   private static AppController instance = null;
 
-
-    public AppController() {
+    private AppController() {
+    }
+    public static AppController getInstance(){
+        if(instance == null){
+            instance = new AppController();
+        }
+        return instance;
     }
 
     public void setArticles(List<Article> articles) {
@@ -52,6 +58,7 @@ public class AppController {
 
         List<String> urls = articles.stream()
                 .map( Article::getUrl )
+                .filter(Objects::nonNull)
                 .toList();
 
 
