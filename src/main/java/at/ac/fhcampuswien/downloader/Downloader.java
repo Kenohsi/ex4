@@ -19,44 +19,44 @@ public abstract class Downloader {
         InputStream is = null;
         OutputStream os = null;
         String fileName;
-       // File file = new File( "C:/myfile.txt" );
+        // File file = new File( "C:/myfile.txt" );
         try {
 
-            URL url4download = new URL(urlString);  // Convert string to URL
+            URL url4download = new URL( urlString );  // Convert string to URL
             is = url4download.openStream();
 
-                fileName = urlString.substring(urlString.lastIndexOf('/') + 1); // extract filename
+            fileName = urlString.substring( urlString.lastIndexOf( '/' ) + 1 ); // extract filename
 
-                if (fileName.isEmpty()) {
-                    fileName = url4download.getHost() + HTML_EXTENSION; // if no filename could be extracted use the URL host and .html extension
-                }
-
-
-
-
-
-            os = new FileOutputStream(DIRECTORY_DOWNLOAD + fileName);   // write to /download/<filename>
-
-            byte[] b = new byte[2048];
-            int length;
-            while ((length = is.read(b)) != -1) {   // read byte for byte and write it to file
-                os.write(b, 0, length);
+            if ( fileName.isEmpty() ) {
+                fileName = url4download.getHost() + HTML_EXTENSION; // if no filename could be extracted use the URL host and .html extension
             }
-        } catch (MalformedURLException e){
-            throw new NewsAPIException("Cannot convert " + urlString + " to URL. Error message: " + e.getMessage());
+
+            if ( fileName.contains( "?" ) ) {
+                fileName = fileName.replace( "?", "" );
+
+            }
+
+
+            os = new FileOutputStream( DIRECTORY_DOWNLOAD + fileName );   // write to /download/<filename>
+
+            byte[] b = new byte[ 2048 ];
+            int length;
+            while ((length = is.read( b )) != -1) {   // read byte for byte and write it to file
+                os.write( b, 0, length );
+            }
+        } catch (MalformedURLException e) {
+            throw new NewsAPIException( "Cannot convert " + urlString + " to URL. Error message: " + e.getMessage() );
         } catch (IOException e) {
-            fileName = "unglültigername" + HTML_EXTENSION; // extract filename}
-            throw new NewsAPIException("Either failed to open URL: " + urlString + " or failed to write to Folder. Error message: " + e.getMessage());
-enum
+
+            throw new NewsAPIException( "Either failed to open URL: " + urlString + " or failed to write to Folder. Error message: " + e.getMessage() );
 
 
         } finally {
             try {
-                if(is != null)
+                if ( is != null )
                     is.close();
-                if(os != null)
+                if ( os != null )
                     os.close();
-
 
 
             } catch (IOException | NullPointerException e) {

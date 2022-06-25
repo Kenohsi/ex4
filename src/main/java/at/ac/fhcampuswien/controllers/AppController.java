@@ -7,7 +7,6 @@ import at.ac.fhcampuswien.enums.Endpoint;
 import at.ac.fhcampuswien.models.Article;
 import at.ac.fhcampuswien.models.NewsResponse;
 import at.ac.fhcampuswien.models.Source;
-import at.ac.fhcampuswien.models.URLs;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -32,7 +31,7 @@ public class AppController {
     // returns number of downloaded article urls
 
     public List<Article> getTopHeadlinesAustria() {
-        NewsApi api = new NewsApi( "politik",  Endpoint.EVERYTHING );
+        NewsApi api = new NewsApi( "politik", Endpoint.EVERYTHING );
         articles = new ArrayList<>();
         try {
             NewsResponse response = api.requestData();
@@ -47,37 +46,11 @@ public class AppController {
     public int downloadURLs(Downloader downloader) throws NewsAPIException {
         if ( articles == null )
             throw new NewsAPIException( "Load data first" );
+        // TODO extract urls from articles with java stream
 
-
-        //    NewsApi api = new NewsApi("corona", Country.at, Endpoint.TOP_HEADLINES);
-        //    articles = new ArrayList<>();
-        //    try {
-        //        NewsResponse response = api.requestData();
-        //        articles = response.getArticles();
-        //    } catch (NewsAPIException e){
-        //        System.out.println("An error occurred while fetching articles: " + e.getMessage());
-        //    }
-
-
-        List<String> urls = new ArrayList<>();
-
-        urls = articles.stream()
+        List<String> urls = articles.stream()
                 .map( Article::getUrl )
                 .toList();
-
-
-        System.out.println( urls );
-        //downloader.saveUrl2File( urls.toString() );
-
-        //System.out.println(  downloader.saveUrl2File( urls ));
-
-        // TODO extract urls from articles with java stream
-        //System.out.print(downloader.process(urls));
-
-        // System.out.println(Arrays.toString(urls.toArray()));
-
-
-        //System.out.print(urls);
 
 
         return downloader.process( urls );
@@ -100,18 +73,7 @@ public class AppController {
      *
      * @return article list
      */
- //  public List<Article> getURLs() {
- //      NewsApi api = new NewsApi( "corona", Country.at, Endpoint.EVERYTHING );
- //      articles = new ArrayList<>();
- //      try {
- //          NewsResponse response = api.requestData();
- //          articles = response.getURL();
- //      } catch (NewsAPIException e) {
- //          System.out.println( "An error occurred while fetching articles: " + e.getMessage() );
- //      }
 
- //      return articles;
- //  }
 
     /**
      * returns all articles that do contain "bitcoin"
@@ -185,19 +147,7 @@ public class AppController {
                 .sorted( Comparator.comparingInt( a -> a.getDescription().length() ) )
                 .collect( Collectors.toList() );
 
-        /* long form
-        return articles.stream()
-                .sorted( (a1, a2) -> {
-                    if(a1.getDescription().length() == a2.getDescription().length()){
-                        return a1.getDescription().compareTo(a2.getDescription());
-                    } else if (a1.getDescription().length() > a2.getDescription().length()) {
-                        return 1;
-                    } else {
-                        return -1;
-                    }
-                })
-                .collect(Collectors.toList());
-        */
+
     }
 
     /**
